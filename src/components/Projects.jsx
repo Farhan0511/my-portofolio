@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./Projects.module.css";
-import dinsos from "/Dinsos.png";
 
 const categories = ["All", "Web App"];
 
@@ -9,11 +8,12 @@ const projects = [
     id: 1,
     title: "Sistem Bantuan Sosial",
     category: "Web App",
-    Image: "/Dinsos.png",
     desc: "Aplikasi pengelolaan dan distribusi bantuan sosial dalam program rehabilitasi sosial. Dibangun dengan PHP, Laravel, MySQL, dan metode Agile.",
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
     color: "#6366f1",
     emoji: "🏛️",
+    demo: "#",
+    github: "https://github.com/Farhan0511/dinsos-app",
   },
   {
     id: 2,
@@ -23,6 +23,8 @@ const projects = [
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
     color: "#ec4899",
     emoji: "🍽️",
+    demo: "https://saungengkong.anura.my.id",
+    github: "https://github.com/Farhan0511/saung-engkong",
   },
   {
     id: 3,
@@ -32,6 +34,8 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     color: "#f59e0b",
     emoji: "☕",
+    demo: "https://kedai-kopi-production.up.railway.app",
+    github: "https://github.com/Farhan0511/Kedai-Kopi",
   },
   {
     id: 4,
@@ -41,6 +45,8 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     color: "#8b5cf6",
     emoji: "📝",
+    demo: "#",
+    github: "https://github.com/Farhan0511",
   },
   {
     id: 5,
@@ -50,6 +56,8 @@ const projects = [
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
     color: "#06b6d4",
     emoji: "🚀",
+    demo: "#",
+    github: "https://github.com/Farhan0511",
   },
   {
     id: 6,
@@ -59,6 +67,8 @@ const projects = [
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
     color: "#14b8a6",
     emoji: "📊",
+    demo: "#",
+    github: "https://github.com/Farhan0511",
   },
 ];
 
@@ -76,11 +86,11 @@ export default function Projects() {
           <span className="section-label">Portfolio</span>
           <h2 className="section-title">My Projects</h2>
           <p className="section-desc">
-            Kumpulan proyek yang telah saya kerjakan
+            Kumpulan proyek yang telah saya kerjakan.
           </p>
         </div>
 
-        {/* Filter Buttons */}
+        {/* Filter */}
         <div
           className={styles.filters}
           role="group"
@@ -89,7 +99,9 @@ export default function Projects() {
           {categories.map((cat) => (
             <button
               key={cat}
-              className={`${styles.filterBtn} ${filter === cat ? styles.filterActive : ""}`}
+              className={`${styles.filterBtn} ${
+                filter === cat ? styles.filterActive : ""
+              }`}
               onClick={() => setFilter(cat)}
             >
               {cat}
@@ -97,7 +109,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Project Grid */}
+        {/* Cards */}
         <div className={styles.grid}>
           {filtered.map((project) => (
             <div
@@ -107,7 +119,6 @@ export default function Projects() {
               onMouseLeave={() => setHovered(null)}
               style={{ "--accent-color": project.color }}
             >
-              {/* Preview */}
               <div className={styles.preview}>
                 <div
                   className={styles.previewBg}
@@ -117,12 +128,13 @@ export default function Projects() {
                 >
                   <span className={styles.previewEmoji}>{project.emoji}</span>
                 </div>
+
                 <div className={styles.categoryBadge}>{project.category}</div>
               </div>
 
-              {/* Content */}
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
+
                 <p className={styles.cardDesc}>{project.desc}</p>
 
                 <div className={styles.techRow}>
@@ -143,9 +155,10 @@ export default function Projects() {
 
                 <div className={styles.cardFooter}>
                   <a
-                    href="#"
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={styles.viewLink}
-                    aria-label={`View ${project.title}`}
                   >
                     View Project
                     <svg
@@ -163,10 +176,13 @@ export default function Projects() {
                       />
                     </svg>
                   </a>
+
                   <a
-                    href="#"
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={styles.githubLink}
-                    aria-label="View source code"
+                    aria-label="GitHub Repository"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -180,7 +196,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Hover line accent */}
               <div
                 className={styles.accentLine}
                 style={{ background: project.color }}
