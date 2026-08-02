@@ -258,4 +258,4 @@
   .tagline br { display: none; }
   .actions { flex-direction: column; align-items: stretch; }
   .actions .btn { text-align: center; justify-content: center; }
-}
+};
